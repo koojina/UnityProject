@@ -365,7 +365,7 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 100
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -631,9 +631,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 1.1690001, z: -0.11400001}
+    m_Target: {x: 4.8593554, y: 12.070108, z: -0.21247654}
     speed: 2
-    m_Value: {x: 0, y: 1.1690001, z: -0.11400001}
+    m_Value: {x: 4.8593554, y: 12.070108, z: -0.21247654}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -679,13 +679,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.024268841, y: -0.056356516, z: 0.0013694558, w: -0.9981175}
+    m_Target: {x: -0.21503805, y: 0.24931878, z: -0.056882773, w: -0.942534}
     speed: 2
-    m_Value: {x: -0.024268774, y: -0.056356363, z: 0.0013694521, w: -0.99811476}
+    m_Value: {x: -0.21503727, y: 0.24931788, z: -0.056882568, w: -0.94253063}
   m_Size:
-    m_Target: 1.2247449
+    m_Target: -0.57525516
     speed: 2
-    m_Value: 1.2247449
+    m_Value: -0.57525516
   m_Ortho:
     m_Target: 0
     speed: 2
