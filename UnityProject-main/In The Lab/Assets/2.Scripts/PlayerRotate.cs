@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerRotate : MonoBehaviour
 {
-    float RotSpeed;
-    float Mx;
-    private Transform tr;
+    float RotSpeed = 0;
+    float My = 0;
+   // private Transform tr;
     // Start is called before the first frame update
     void start()
     {
@@ -16,10 +16,10 @@ public class PlayerRotate : MonoBehaviour
     void Update()
     {
         
-        Mx = GameObject.Find("Main Camera").GetComponent<CamRotate>().mx;
+        My = GameObject.Find("Main Camera").GetComponent<CamRotate>().my;
 
        
-        tr.eulerAngles = new Vector3(0, Mx, 0);
+        transform.eulerAngles = new Vector3(-90, 0, -My);
 
     }
 }

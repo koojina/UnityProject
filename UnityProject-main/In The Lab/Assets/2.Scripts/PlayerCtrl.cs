@@ -13,7 +13,7 @@ public class PlayerCtrl : MonoBehaviour
     CharacterController CC; //캐릭터 컨트롤러 변수
     float gravity = -20f; //중력 변수
     float yVelocity = 0; // 수직 속력 변수
-    public float jump = 10f;
+    public float jump =4f;
     public bool isJumping = false; //점프 상태 변수
 
      public void Start()

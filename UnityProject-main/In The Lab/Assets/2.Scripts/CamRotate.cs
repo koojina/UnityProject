@@ -1,12 +1,12 @@
-﻿using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CamRotate : MonoBehaviour
 {
-    public float rotSpeed = 200f;
+    public float rotSpeed = 20f;
     public float mx = 0;
-    float my = 0;
+   public float my = 0;
     // Start is called before the first frame update
     void Start()
     {
