@@ -33,7 +33,7 @@ public class CamRotate : MonoBehaviour
         my += m_Y * rotSpeed * Time.deltaTime;
 
         my = Mathf.Clamp(my, -90f, 90f); //my의 값이 -90~90으로 유지되게 설정
-
+       
         transform.eulerAngles = new Vector3(-my, mx, 0); //오일러 앵글의 각 축에 해당하는 값으로 물체를 회전
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         if (gm.gState == GameManager.GameState.Run && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W)))//플레이어 달리는 소리

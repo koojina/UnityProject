@@ -14,7 +14,7 @@ public class PlayerFire : MonoBehaviour
     public GameObject[] eff_Flash;
     // 피격 이펙트 파티클 시스템
     ParticleSystem ps;
-
+    GunCtrl gc;
     // 발사 무기 공격력
     public int weaponPower = 5;
 
@@ -28,6 +28,7 @@ public class PlayerFire : MonoBehaviour
 
     void Update()
     {
+        gc = GameObject.Find("FirePosition").GetComponent<GunCtrl>();
         // 게임 상태가 "게임 중" 상태일 때에만 조작 가능하게 한다.
         if (GameManager.gm.gState != GameManager.GameState.Run)
         {
@@ -36,7 +37,7 @@ public class PlayerFire : MonoBehaviour
         // 마우스 왼쪽 버튼을 누르면 시선이 바라보는 방향으로 총을 발사하고 싶다.
 
         // 마우스 왼쪽 버튼 입력을 받는다.
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && gc.bullet > 0)
         {
             // 만일 이동 블렌드 트리 파라미터의 값이 0이라면, 공격 애니메이션을 실시한다.
             if (anim.GetFloat("MoveMotion") == 0)
