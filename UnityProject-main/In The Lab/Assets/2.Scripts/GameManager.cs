@@ -6,9 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // 싱글톤 변수
-    public static GameManager gm;
+    
+    //몬스터가 출현할 위치를 담을 배열
+    public Transform[] points;
+    //몬스터 프리팹을 할당할 변수\
+    public GameObject monsterPrefab;
 
+    //몬스터를 발생시킬 주기
+    public float createTime;
+    //몬스터의 최대 발생 개수
+    public int maxMonster = 25;
+    public static GameManager gm;
+    // 싱글톤 변수
     private void Awake()
     {
         if (gm == null)
@@ -75,6 +84,14 @@ public class GameManager : MonoBehaviour
 
         // 상태를 "게임 중" 상태로 변경한다.
         gState = GameState.Run;
+
+        points = GameObject.Find("SpawnPoint").GetComponentsInChildren<Transform>();
+
+        if (points.Length > 0)
+        {
+            //몬스터 생성 코루틴 함수 호출
+            StartCoroutine(this.CreateMonster());
+        }
     }
 
     void Update()
@@ -135,4 +152,36 @@ public class GameManager : MonoBehaviour
         // 응용 프로그램을 종료한다.
         Application.Quit();
     }
+
+    IEnumerator CreateMonster()
+    {
+        //게임 종료 시까지 무한 루프
+        while (gState!=GameState.GameOver)
+        {
+            //현재 생성된 몬스터 개수 산출
+            int monsterCount = (int)GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+            if (monsterCount < maxMonster)
+            {
+                //몬스터의 생성 주기 시간만큼 대기
+                yield return new WaitForSeconds(createTime);
+
+                //불규칙적인 위치 산출
+
+                int idx = Random.Range(0, points.Length-1);
+                int x = Random.Range(0, 11);
+                int z = Random.Range(0, 11);
+                int x_ = Random.Range(0, 2);
+                int z_ = Random.Range(0, 2);
+                points[idx].position = new Vector3(x_ == 0 ? points[idx].position.x + x : points[idx].position.x - x,points[idx].position.y,points[idx].position.z + z);
+                //몬스터의 동적 생성 
+                Instantiate(monsterPrefab, points[idx].position, points[idx].rotation);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
 }

@@ -53,11 +53,13 @@ public class EnemyFSM : MonoBehaviour
     // 에너미의 체력
     public int hp = 300;
 
-
+    GameManager gm;
     // 애니메이터 변수
     Animator anim;
 
     int mn;
+
+    PlayerCtrl py;
 
     void Start()
     {
@@ -77,13 +79,18 @@ public class EnemyFSM : MonoBehaviour
         // 자식 오브젝트로부터 애니메이터 변수 받아오기
         anim = transform.GetComponentInChildren<Animator>();
 
+       
+
         mn = 0;
     }
 
     void Update()
     {
-
+        gm= GameObject.Find("GameManager").GetComponent<GameManager>();
+        py = GameObject.Find("Player").GetComponent<PlayerCtrl>();
         anim.SetFloat("EMove", mn);
+        if (gm.gState == 0)
+            m_State = EnemyState.Idle;
         // 현재 상태를 체크하여 해당 상태별로 정해진 기능을 수행하게 하고 싶다.
         switch (m_State)
         {
@@ -259,6 +266,7 @@ public class EnemyFSM : MonoBehaviour
         // 2초 동안 기다린 뒤에 자기 자신을 제거한다.
         anim.StopPlayback();
         yield return new WaitForSeconds(2f);
+        py.kill += 1;
         print("소멸!");
         Destroy(gameObject);
     }

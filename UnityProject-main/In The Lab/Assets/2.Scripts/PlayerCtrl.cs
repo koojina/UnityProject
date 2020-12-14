@@ -22,10 +22,12 @@ public class PlayerCtrl : MonoBehaviour
     public bool isJumping = false; //점프 상태 변수
     Animator anim; //애니메이터 변수
     private AudioSource audioSource;//점프 오디오 소리
+    public Text tx;
     GameManager gm;
-    float step;
-    float step_;
+    public float step;
+    public float step_;
     bool stepon;
+    public int kill;
     public void Start()
     {
         tr = GetComponent<Transform>();
@@ -35,6 +37,7 @@ public class PlayerCtrl : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         step = 0;
         step_ = 20;
+        kill = 0;
     }
     
     // Start is called before the first frame update
@@ -69,6 +72,7 @@ public class PlayerCtrl : MonoBehaviour
         Sliderhp.value = (float)hp / (float)mHP;
         if(Sliderstep!=null)
         Sliderstep.value = (float)step / (float)step_;
+        tx.text = string.Format("{0}", kill);
     }
     IEnumerator PlayEffect()
     {
@@ -87,22 +91,27 @@ public class PlayerCtrl : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.CompareTag("step"))
+        { 
             stepon = true;
-        {
+           
             StartCoroutine(StartStep());
         }   
     }
     IEnumerator StartStep()
     {
+      /*  GameObject stepgo;
+        stepgo = GameObject.Find("stepbar");*/
         while (stepon)
         {
-            step += 0.1f;
+          //  stepgo.SetActive(true);
+            step += 0.05f;
             yield return null;
-        }
+        } //stepgo.SetActive(false);
     }
     public void OnTriggerExit(Collider other)
-    {
+    {  
         StopCoroutine(StartStep());
         stepon = false;
         step = 0;
